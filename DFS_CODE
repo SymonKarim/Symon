@@ -1,0 +1,61 @@
+#include<bits/stdc++.h>
+using namespace std;
+int node,edge;
+vector<int> adj_list[100];
+vector<bool> vis(100,false);
+void dfs(int startingNode)
+{
+    cout<<startingNode<<" ";
+    vis[startingNode] = true;
+    for(int i=0;i<adj_list[startingNode].size();i++){
+        if(vis[adj_list[startingNode][i]] == false){
+            dfs(adj_list[startingNode][i]);
+        }
+    }
+}
+int main()
+{
+    //freopen("input.txt","r",stdin);
+    cin>>node>>edge;
+    for(int i=1;i<=edge;i++){
+        int u,v;
+        cin>>u>>v;
+        adj_list[u].push_back(v);
+        adj_list[v].push_back(u);
+    }
+    dfs(0);
+    return 0;
+}
+///Input_Output
+/*
+in
+9 8
+0 1
+0 7
+1 3
+1 2
+3 9
+3 4
+4 5
+2 8
+out
+0 1 3 9 4 5 2 8 7
+*/
+
+
+/*
+inPUT
+11 10
+0 7
+0 1
+1 6
+1 3
+3 5
+8 9
+3 4
+2 8
+0 2
+2 10
+outPUT
+0 7 1 6 3 5 4 2 8 9 10
+*/
